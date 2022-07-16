@@ -1,0 +1,13 @@
+* {
+    border: 1px solid black;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+}
+#canvas {
+    height: 500px;
+    width: 500px;
+    display: grid;
+}

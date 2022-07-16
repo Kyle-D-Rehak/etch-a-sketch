@@ -4,22 +4,25 @@ const eraseButton = document.querySelector('#eraseButton');
 const clearButton = document.querySelector('#clearButton');
 const resetButton = document.querySelector('#resetButton');
 const colorDisplay = document.querySelector('#colorDisplay');
+const colorPicker = document.querySelector('#colorPicker');
 const slider = document.querySelector('.slider');
 const sliderLabel = document.querySelector('#sliderLabel');
 let color = '#2b2b2b';
+let lastColor = '#2b2b2b';
 let mouseDown = false;
 
 document.addEventListener('mousedown', () => mouseDown = true);
 document.addEventListener('mouseup', () => mouseDown = false);
 
+colorPicker.addEventListener('input', () => {color = colorPicker.value; lastColor = color; updateColorDisplay(color);});
 
-slider.addEventListener('change', () => {createCanvas(slider.value); color = '#2b2b2b'; updateColorDisplay(color);});
-slider.addEventListener('input', () => updateSliderText(slider.value));
+slider.addEventListener('change', () => {createCanvas(slider.value); updateColorDisplay(color);});
+slider.addEventListener('input', () => {updateSliderText(slider.value); color = lastColor; updateColorDisplay(color);});
 
-colorButton.addEventListener('click', () => {color = '#2b2b2b'; updateColorDisplay(color);});
-eraseButton.addEventListener('click', () => {color = 'white'; updateColorDisplay(color);});
-clearButton.addEventListener('click', () => createCanvas(slider.value));
-resetButton.addEventListener('click', () => {slider.value = 16; createCanvas(slider.value); updateSliderText(slider.value); color = '#2b2b2b'; updateColorDisplay(color);});
+colorButton.addEventListener('click', () => {color = lastColor; updateColorDisplay(color);});
+eraseButton.addEventListener('click', () => {lastColor = color; color = 'white'; updateColorDisplay(color);});
+clearButton.addEventListener('click', () => {createCanvas(slider.value);color = lastColor; updateColorDisplay(color);});
+resetButton.addEventListener('click', () => {slider.value = 16; createCanvas(slider.value); updateSliderText(slider.value); color = '#2b2b2b'; lastColor = color; updateColorDisplay(color);});
 
 
 createCanvas(slider.value);

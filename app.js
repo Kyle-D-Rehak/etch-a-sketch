@@ -1,5 +1,6 @@
 const canvas = document.querySelector('#canvas');
 const clearButton = document.querySelector('#clearButton');
+const resetButton = document.querySelector('#resetButton');
 const slider = document.querySelector('.slider');
 const sliderLabel = document.querySelector('#sliderLabel');
 let color = 'black';
@@ -11,6 +12,10 @@ document.addEventListener('mouseup', () => mouseDown = false);
 
 slider.addEventListener('change', () => createCanvas(slider.value));
 slider.addEventListener('input', () => updateSliderText(slider.value));
+
+clearButton.addEventListener('click', () => createCanvas(slider.value));
+resetButton.addEventListener('click', () => {slider.value = 16; createCanvas(slider.value); updateSliderText(slider.value)});
+
 
 createCanvas(slider.value);
 sliderLabel.textContent = `${slider.value} x ${slider.value}`;

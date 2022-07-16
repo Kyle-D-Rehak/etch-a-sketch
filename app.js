@@ -1,10 +1,23 @@
 const canvas = document.querySelector('#canvas');
+const clearButton = document.querySelector('#clearButton');
+const slider = document.querySelector('.slider');
+const sliderLabel = document.querySelector('#sliderLabel');
 let color = 'black';
 let mouseDown = false;
 
 document.addEventListener('mousedown', () => mouseDown = true);
 document.addEventListener('mouseup', () => mouseDown = false);
 
+
+slider.addEventListener('change', () => createCanvas(slider.value));
+slider.addEventListener('input', () => updateSliderText(slider.value));
+
+createCanvas(slider.value);
+sliderLabel.textContent = `${slider.value} x ${slider.value}`;
+
+function updateSliderText(value) {
+    sliderLabel.textContent = `${value} x ${value}`;
+}
 
 function createCanvas(size) {
     const oldTiles = Array.from(document.querySelectorAll('.gridTile'));

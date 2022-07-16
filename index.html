@@ -9,7 +9,16 @@
     <title>Etch-a-Sketch</title>
 </head>
 <body>
-    <div class="container" id="canvas"></div>
+    <header></header>
+    <div class="appContainer">
+        <div class="container" id="controlPanel">
+            <div id="sliderLabel"></div>
+            <input type="range" min="8" max="64" value="16" class="slider">
+            <button class="button" id="clearButton">Clear</button>
+            <button class="button" id="resetButton">Reset</button>
+        </div>
+        <div class="container" id="canvas"></div>
+    </div>
     
 </body>
 </html>
